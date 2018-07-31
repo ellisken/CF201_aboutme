@@ -1,3 +1,5 @@
+'use strict';
+
 //Check JavaScript is working
 console.log('JS is working');
 
@@ -5,7 +7,7 @@ console.log('JS is working');
 function prompt_question(question, answer){
   var response = prompt(question);
   //Process response
-  if(response.toLowerCase() === answer){
+  if(response.toLowerCase()[0] === answer[0]){
     alert('Correct!');
   }
   else{
