@@ -1,9 +1,20 @@
 body {
-    font-style: courier;
-    background-color: azure;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 20px;
+    background-color: black;
 }
 
 #page_title {
     text-align: center;
-    color: rgb(11, 11, 12);
+    color: white;
+}
+
+#welcome{
+    text-align: center;
+    color: rgb(63, 170, 165);
+}
+
+.section{
+    padding: 20px;
+    color: white;
 }
