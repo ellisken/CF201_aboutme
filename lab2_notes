@@ -1,0 +1,14 @@
+About me page: short bio, education, overview of job experience, goals
+
+Get user's name to personalize experience
+Five questions (yes/no):
+    - user must input yes/no
+
+
+
+
+Notify after each question (right, wrong)
+Include console debug statements
+usse strict dec at top of JS file
+
+Add CSS to style
