@@ -61,47 +61,47 @@ var i, j; //for indexing
   //If response is valid, display congrats and the answer
   //Else if response is incorrect, notify user
   //Else reprompt until a valid answer is given
-// correct_ct = 0;
-// for(i = 0; i < 5; i++){
-//   do{
-//     //Get user response
-//     console.log('Question #' + (i+1) + ': ' + questions[i]);
-//     response = prompt(questions[i]).toLowerCase()[0];
-//     console.log('User answer: ' + response);
-//     if(response === answers[i][0]){
-//       alert(answers[i]);
-//       //increment correct_ct
-//       correct_ct++;
-//     }
-//     else if(response !== answers[i][0] && (response === 'y' || response === 'n')){
-//       alert('Wrong!');
-//     }
-//   }while(response !== 'y' && response !== 'n');
-// }
+correct_ct = 0;
+for(i = 0; i < 5; i++){
+  do{
+    //Get user response
+    console.log('Question #' + (i+1) + ': ' + questions[i]);
+    response = prompt(questions[i]).toLowerCase()[0];
+    console.log('User answer: ' + response);
+    if(response === answers[i][0]){
+      alert(answers[i]);
+      //increment correct_ct
+      correct_ct++;
+    }
+    else if(response !== answers[i][0] && (response === 'y' || response === 'n')){
+      alert('Wrong!');
+    }
+  }while(response !== 'y' && response !== 'n');
+}
 
 //Ask sixth question, reprompting exactly four times,
 //indicating whether the user's guess was too high or too low
-// while(guess_ct > 0){
-//   //Get user response
-//   console.log('Question #6: ' + q6);
-//   response = Number(prompt(q6));
-//   console.log('User answer: ' + response);
-//   if(response === a6){
-//     alert('Correct!');
-//     //increment correct_ct
-//     correct_ct++;
-//     guess_ct = 0;
-//   }
-//   else{
-//     guess_ct--;
-//     if(response < a6){
-//       alert('Too low! You have ' + guess_ct + ' more guesses.');
-//     }
-//     else{
-//       alert('Too high! You have ' + guess_ct + ' more guesses.');
-//     }
-//   }
-// }
+while(guess_ct > 0){
+  //Get user response
+  console.log('Question #6: ' + q6);
+  response = Number(prompt(q6));
+  console.log('User answer: ' + response);
+  if(response === a6){
+    alert('Correct!');
+    //increment correct_ct
+    correct_ct++;
+    guess_ct = 0;
+  }
+  else{
+    guess_ct--;
+    if(response < a6){
+      alert('Too low! You have ' + guess_ct + ' more guesses.');
+    }
+    else{
+      alert('Too high! You have ' + guess_ct + ' more guesses.');
+    }
+  }
+}
 
 //Ask seventh question, reprompting exactly six times,
 //indicating whether the user's guess was too high or too low
@@ -111,6 +111,7 @@ while(guess_ct > 0 && correct === false){
   console.log('Question #7: ' + q7);
   response = prompt(q7).toLowerCase();
   console.log('User answer: ' + response);
+  //Check if response is in answer array
   for(j=0; j < a7.length; j++){
     if(response === a7[j]){
       alert('Correct!');
@@ -119,10 +120,20 @@ while(guess_ct > 0 && correct === false){
       correct = true;
     }
   }
+  //If answer was not correct, alert user and decrement 
+  //remaining guess count
   if(correct === false){
     guess_ct--;
     alert('Wrong! You have ' + guess_ct + ' more guesses.');
   }
 }
 
+
+//Tally and present user quiz score
+if(correct_ct === question_ct){
+  alert('You got all the questions correct! Good job, ' + username + '!');
+}
+else{
+  alert('You got ' + correct_ct + ' out of ' + question_ct + ' correct. Better luck next time.');
+}
 
