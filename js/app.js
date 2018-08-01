@@ -6,7 +6,7 @@ console.log('JS is working');
 //Define question prompt action
 function prompt_question(question, answer){
   var response = prompt(question);
-  //Process response
+  //Process response, checking only by first letter
   if(response.toLowerCase()[0] === answer[0]){
     alert('Correct!');
   }
