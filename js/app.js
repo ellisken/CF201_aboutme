@@ -129,7 +129,8 @@ while(guess_ct > 0 && correct === false){
 }
 
 //Display all possible answers to question 7
-alert('All possible answers: ' + a7);
+q7_answers = a7.join(', ');
+alert('All possible answers: ' + q7_answers);
 
 
 //Tally and present user quiz score
