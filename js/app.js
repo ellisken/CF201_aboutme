@@ -34,53 +34,39 @@ var questions = [q1, q2, q3, q4, q5];
 var answers = [a1, a2, a3, a4, a5];
 
 //Variable definitions
-var correct_ct; //Tracks number of questions the user gets correct
+var correct_ct=0; //Tracks number of questions the user gets correct
 var question_ct = 7; //Number of total questions asked
 var guess_ct = 4; //Number of guesses allowed for question 6
-var correct = false; //Used for question 7 loop control
-var j; //for indexing
-/************************************************************
- *                     Interaction Start
- * ******************************************************* */
-
-// //Prompt visitor for name
-// var username = prompt('Hello visitor, what\'s your name?');
-// console.log('visitor name entered: ' + username);
-
-// //Add user welcome message to page
-// alert('Welcome, ' + username + '!');
-// console.log('Welcome message displayed.');
 
 
-// //For each question and answer pair
-//   //If response is valid, display congrats and the answer
-//   //Else if response is incorrect, notify user
-//   //Else reprompt until a valid answer is given
-// correct_ct = 0;
-// function askquestions1to5 (score, questions, answers){
-//   for (var i = 0; i < questions.length; i++){
-//     do{
-//       //Get user response
-//       console.log('Question #' + (i+1) + ': ' + questions[i]);
-//       var response = prompt(questions[i]).toLowerCase()[0];
-//       console.log('User answer: ' + response);
-//       if(response === answers[i][0]){
-//         alert(answers[i]);
-//         //increment correct_ct
-//         correct_ct++;
-//       }
-//       else if(response !== answers[i][0] && (response === 'y' || response === 'n')){
-//         alert('Wrong!');
-//       }
-//     }while(response !== 'y' && response !== 'n');
-//   }
-// }
-// askquestions1to5 (correct_ct, questions, answers);
+//For each question and answer pair
+//If response is valid, display congrats and the answer
+//Else if response is incorrect, notify user
+//Else reprompt until a valid answer is given
+
+function askquestions1to5 ( questions, answers){
+  for (var i = 0; i < questions.length; i++){
+    do{
+      //Get user response
+      console.log('Question #' + (i+1) + ': ' + questions[i]);
+      var response = prompt(questions[i]).toLowerCase()[0];
+      console.log('User answer: ' + response);
+      if(response === answers[i][0]){
+        alert(answers[i]);
+        //increment correct_ct
+        correct_ct++;
+      }
+      else if(response !== answers[i][0] && (response === 'y' || response === 'n')){
+        alert('Wrong!');
+      }
+    }while(response !== 'y' && response !== 'n');
+  }
+}
 
 
 //Ask sixth question, reprompting exactly four times,
 //indicating whether the user's guess was too high or too low
-function askNumberGuess (guess_ct, score, question, answer) {
+function askNumberGuess (guess_ct, question, answer) {
   while(guess_ct > 0){
     //Get user response
     console.log('Question #6: ' + question);
@@ -89,7 +75,7 @@ function askNumberGuess (guess_ct, score, question, answer) {
     if(response === answer){
       alert('Correct!');
       //increment correct_ct
-      score++;
+      correct_ct++;
       guess_ct = 0;
     }
     else{
@@ -103,36 +89,58 @@ function askNumberGuess (guess_ct, score, question, answer) {
     }
   }
 }
-askNumberGuess (guess_ct, correct_ct, q6, a6);
 
 //Ask seventh question, reprompting exactly six times,
-//indicating whether the user's guess was too high or too low
-guess_ct = 6;
-while(guess_ct > 0 && correct === false){
-  //Get user response
-  console.log('Question #7: ' + q7);
-  response = prompt(q7).toLowerCase();
-  console.log('User answer: ' + response);
-  //Check if response is in answer array
-  for(j=0; j < a7.length; j++){
-    if(response === a7[j]){
-      alert('Correct!');
-      //increment correct_ct
-      correct_ct++;
-      correct = true;
+//Indicating places I have visited
+
+function placesVisited (numberOfGuesses, question, answers){
+  var correct = false;
+  while(numberOfGuesses > 0 && correct === false){
+    //Get user response
+    console.log('Question #7: ' + question);
+    var response = prompt(question).toLowerCase();
+    console.log('User answer: ' + response);
+    //Check if response is in answer array
+    for(var j=0; j < answers.length; j++){
+      if(response === a7[j]){
+        alert('Correct!');
+        //increment score
+        correct_ct++;
+        correct = true;
+      }
+    }
+
+    //If answer was not correct, alert user and decrement
+    //remaining guess count
+    if(correct === false){
+      numberOfGuesses--;
+      alert('Wrong! You have ' + numberOfGuesses + ' more guesses.');
     }
   }
-  //If answer was not correct, alert user and decrement 
-  //remaining guess count
-  if(correct === false){
-    guess_ct--;
-    alert('Wrong! You have ' + guess_ct + ' more guesses.');
-  }
+
+  //Display all possible answers to question 7
+  answers = answers.join(', ');
+  alert('All possible answers: ' + answers);
 }
 
-//Display all possible answers to question 7
-q7_answers = a7.join(', ');
-alert('All possible answers: ' + q7_answers);
+/************************************************************
+ *                     Interaction Start
+ * ******************************************************* */
+
+//Prompt visitor for name
+var username = prompt('Hello visitor, what\'s your name?');
+console.log('visitor name entered: ' + username);
+
+//Add user welcome message to page
+alert('Welcome, ' + username + '!');
+console.log('Welcome message displayed.');
+
+//Function calls
+askquestions1to5 (questions, answers);
+askNumberGuess (guess_ct, q6, a6);
+guess_ct = 6; // can guess up to 6 times
+placesVisited (guess_ct, q7, a7);
+
 
 
 //Tally and present user quiz score
