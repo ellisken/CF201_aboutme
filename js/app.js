@@ -128,6 +128,9 @@ while(guess_ct > 0 && correct === false){
   }
 }
 
+//Display all possible answers to question 7
+alert('All possible answers: ' + a7);
+
 
 //Tally and present user quiz score
 if(correct_ct === question_ct){
