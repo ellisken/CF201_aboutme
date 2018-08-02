@@ -4,7 +4,6 @@
 //Check JavaScript is working
 console.log('JS is working');
 
-
 /************************************************************
  *              Container/String Definitions
  * ******************************************************* */
