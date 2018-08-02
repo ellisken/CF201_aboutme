@@ -1,7 +1,11 @@
 body {
-    font-family: Arial, Helvetica, sans-serif;
     padding: 20px;
     background-color: black;
+}
+
+img {
+    width: 100%;
+    height: auto;
 }
 
 #page_title {
@@ -14,7 +18,7 @@ body {
     color: rgb(63, 170, 165);
 }
 
-.section{
+.info-section{
     padding: 20px;
     color: white;
 }
