@@ -13,9 +13,9 @@ Simply open index.html in your browser to view the site.
 
 * **Kendra Ellis**
 
-**driver name: Suzanne 
-**Navigator: Kendra 
-**paired programming for lab 4 08/02/2018
+*driver name: Suzanne 
+*Navigator: Kendra 
+*paired programming for lab 4 08/02/2018
 
 ## License
 
