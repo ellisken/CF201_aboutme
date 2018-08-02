@@ -53,7 +53,7 @@ var correct_ct; //Tracks number of questions the user gets correct
 var question_ct = 7; //Number of total questions asked
 var guess_ct = 4; //Number of guesses allowed for question 6
 var correct = false; //Used for question 7 loop control
-var i, j; //for indexing
+var j; //for indexing
 
 
 //For each question and answer pair
@@ -61,22 +61,26 @@ var i, j; //for indexing
   //Else if response is incorrect, notify user
   //Else reprompt until a valid answer is given
 correct_ct = 0;
-for(i = 0; i < 5; i++){
-  do{
-    //Get user response
-    console.log('Question #' + (i+1) + ': ' + questions[i]);
-    response = prompt(questions[i]).toLowerCase()[0];
-    console.log('User answer: ' + response);
-    if(response === answers[i][0]){
-      alert(answers[i]);
-      //increment correct_ct
-      correct_ct++;
-    }
-    else if(response !== answers[i][0] && (response === 'y' || response === 'n')){
-      alert('Wrong!');
-    }
-  }while(response !== 'y' && response !== 'n');
+function askquestions1to5 (score, questions, answers){
+  for (var i = 0; i < questions.length; i++){
+    do{
+      //Get user response
+      console.log('Question #' + (i+1) + ': ' + questions[i]);
+      response = prompt(questions[i]).toLowerCase()[0];
+      console.log('User answer: ' + response);
+      if(response === answers[i][0]){
+        alert(answers[i]);
+        //increment correct_ct
+        correct_ct++;
+      }
+      else if(response !== answers[i][0] && (response === 'y' || response === 'n')){
+        alert('Wrong!');
+      }
+    }while(response !== 'y' && response !== 'n');
+  }
 }
+askquestions1to5 (correct_ct, questions, answers);
+
 
 //Ask sixth question, reprompting exactly four times,
 //indicating whether the user's guess was too high or too low
