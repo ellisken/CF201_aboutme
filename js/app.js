@@ -34,9 +34,9 @@ var questions = [q1, q2, q3, q4, q5];
 var answers = [a1, a2, a3, a4, a5];
 
 //Variable definitions
-var correct_ct=0; //Tracks number of questions the user gets correct
-var question_ct = 7; //Number of total questions asked
-var guess_ct = 4; //Number of guesses allowed for question 6
+var correctCt=0; //Tracks number of questions the user gets correct
+var questionCt = 7; //Number of total questions asked
+var guessCt = 4; //Number of guesses allowed for question 6
 
 
 //For each question and answer pair
@@ -44,7 +44,7 @@ var guess_ct = 4; //Number of guesses allowed for question 6
 //Else if response is incorrect, notify user
 //Else reprompt until a valid answer is given
 
-function askquestions1to5 ( questions, answers){
+function askquestions1to5 (questions, answers){
   for (var i = 0; i < questions.length; i++){
     do{
       //Get user response
@@ -54,7 +54,7 @@ function askquestions1to5 ( questions, answers){
       if(response === answers[i][0]){
         alert(answers[i]);
         //increment correct_ct
-        correct_ct++;
+        correctCt++;
       }
       else if(response !== answers[i][0] && (response === 'y' || response === 'n')){
         alert('Wrong!');
@@ -66,8 +66,8 @@ function askquestions1to5 ( questions, answers){
 
 //Ask sixth question, reprompting exactly four times,
 //indicating whether the user's guess was too high or too low
-function askNumberGuess (guess_ct, question, answer) {
-  while(guess_ct > 0){
+function askNumberGuess(guessCt, question, answer) {
+  while(guessCt > 0){
     //Get user response
     console.log('Question #6: ' + question);
     var response = Number(prompt(question));
@@ -75,16 +75,16 @@ function askNumberGuess (guess_ct, question, answer) {
     if(response === answer){
       alert('Correct!');
       //increment correct_ct
-      correct_ct++;
-      guess_ct = 0;
+      correctCt++;
+      guessCt = 0;
     }
     else{
-      guess_ct--;
+      guessCt--;
       if(response < answer){
-        alert('Too low! You have ' + guess_ct + ' more guesses.');
+        alert('Too low! You have ' + guessCt + ' more guesses.');
       }
       else{
-        alert('Too high! You have ' + guess_ct + ' more guesses.');
+        alert('Too high! You have ' + guessCt + ' more guesses.');
       }
     }
   }
@@ -93,7 +93,7 @@ function askNumberGuess (guess_ct, question, answer) {
 //Ask seventh question, reprompting exactly six times,
 //Indicating places I have visited
 
-function placesVisited (numberOfGuesses, question, answers){
+function placesVisited(numberOfGuesses, question, answers){
   var correct = false;
   while(numberOfGuesses > 0 && correct === false){
     //Get user response
@@ -105,7 +105,7 @@ function placesVisited (numberOfGuesses, question, answers){
       if(response === a7[j]){
         alert('Correct!');
         //increment score
-        correct_ct++;
+        correctCt++;
         correct = true;
       }
     }
@@ -137,17 +137,15 @@ console.log('Welcome message displayed.');
 
 //Function calls
 askquestions1to5 (questions, answers);
-askNumberGuess (guess_ct, q6, a6);
-guess_ct = 6; // can guess up to 6 times
-placesVisited (guess_ct, q7, a7);
-
-
+askNumberGuess (guessCt, q6, a6);
+guessCt = 6; // can guess up to 6 times
+placesVisited (guessCt, q7, a7);
 
 //Tally and present user quiz score
-if(correct_ct === question_ct){
+if(correctCt === questionCt){
   alert('You got all the questions correct! Good job, ' + username + '!');
 }
 else{
-  alert('You got ' + correct_ct + ' out of ' + question_ct + ' correct. Better luck next time.');
+  alert('You got ' + correctCt + ' out of ' + questionCt + ' correct. Better luck next time.');
 }
 
